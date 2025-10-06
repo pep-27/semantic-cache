@@ -53,11 +53,6 @@ semantic_cache/
 └── requirements.txt                   # Python dependencies
 ```
 
-**Updated Notes (no topic drift module):**
-
-* The **Topic Drift Detection** component has been removed from the design.
-* The system now relies solely on **semantic distance** and **lexical overlap** filters.
-
 ---
 
 ## 🔧 3. Configuration

@@ -89,7 +89,7 @@ def append_log(entry: dict):
 def main():
     print("💬 Simulating multi-turn conversation with Semantic Cache\n")
 
-    # 🧹 清空旧日志（如果存在）
+    # 🧹 Cleared previous logs (if exist)
     if os.path.exists(LOG_PATH):
         with open(LOG_PATH, "w", encoding="utf-8") as f:
             json.dump([], f, indent=2, ensure_ascii=False)
@@ -101,7 +101,7 @@ def main():
     cache = SemanticCache(
         embedder=embedder,
         vector_store=vector_store,
-        threshold=0.35,
+        threshold=0.3,
         topk=3
     )
     metrics = Metrics()

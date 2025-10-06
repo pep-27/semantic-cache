@@ -15,5 +15,8 @@ archive/
 # Local Gemini response cache
 cache/responses_cache.json
 
+# Local Gemini embedding cache
+cache/embedding_cache.json
+
 # logs
 logs/

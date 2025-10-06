@@ -113,10 +113,10 @@ def main():
         "Effect of global warming on corn productivity",
         "What is GDP?",
         "Tell me about wheat production in global warming",
-        "How does climate change affect wheat yields?",
         "What is the impact of climate change on wheat production?",
         "How does global warming affect wheat production?",
-        "What is the impact of climate change on wheat production?"
+        "Write a poem for me.",
+        "Tell me a famous poem written by Shakespeare."
     ]
 
     for i, q in enumerate(queries, 1):

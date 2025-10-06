@@ -82,7 +82,6 @@ cache/responses_cache.json
 ```
 
 If the same query appears again, the system retrieves the stored response instead of re-calling Gemini — ensuring **zero-cost reuse during debugging**.
-
 This local cache is for **development efficiency only**, not part of the semantic caching mechanism.
 
 ---
@@ -111,7 +110,7 @@ When additional conversation history is included, a new contextual embedding is 
 SemanticCache combines **two verification layers** before confirming a cache hit:
 
 1. **Vector Distance Filter** — Check if semantic distance < `threshold`
-2. **Lexical Overlap Filter** — Require minimum token overlap > `min_overlap`
+2. **Lexical Overlap Filter** — Require token overlap > `min_overlap`
 
 If both pass, a cached answer is reused. Otherwise, a fresh Gemini API call is made.
 
@@ -138,24 +137,48 @@ Each record includes:
 }
 ```
 
-At the end of each session:
+At the end of each session, summary metrics are stored log files.
+
+---
+
+## 💰 8. Cost Estimation (Based on Official Gemini 2.5 Flash-Lite Pricing)
+
+To reflect real API costs, the system uses **Gemini 2.5 Flash-Lite** pricing for token cost estimation:
+
+| Type                         | Price (USD per 1 M tokens) |
+| ---------------------------- | -------------------------- |
+| Input (text / image / video) | $0.10                      |
+| Output (text)                | $0.40                      |
+
+The cost per query is estimated as:
+
+[
+\text{cost} = \frac{\text{input_tokens}}{1{,}000{,}000} \times 0.10 + \frac{\text{output_tokens}}{1{,}000{,}000} \times 0.40
+]
+
+Only **MISS** queries consume tokens; **HIT** queries reuse local results at zero cost.
+
+At the end of a run, the system reports:
 
 ```
-📊 System Results:
-{'total_calls': 8, 'total_hits': 5, 'hit_rate': 0.625, 'avg_latency': 0.48}
-🗂️ Logs saved to: logs/session_log.json
+Cache Hit Rate: 50.00%
+Avg Latency: 0.027 s
+Hit Latency: 0.003 s, Miss Latency: 0.81 s
+LLM Calls Saved: 4
+Estimated Cost Saved: $0.00 (Flash-Lite pricing)
 ```
 
 ---
 
-## 🧪 8. Example Run
+## 🧪 9. Example Run
 
 ```
 💬 Simulating multi-turn conversation with Semantic Cache
 
-[API CALL #1] What is the impact of climate change on corn yields?
-→ LLM Response: Climate change is having a significant impact...
+[API CALL #1] What is the impact of climate change on corn yields?  
+→ LLM Response: Climate change is having a significant impact…
 
-[CACHE HIT #2] Effect of global warming on corn productivity
-→ Return cached content: Climate change is having a signific
+[CACHE HIT #2] Effect of global warming on corn productivity  
+→ Return cached content: Climate change is having a signific…
 ```
+

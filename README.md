@@ -16,6 +16,17 @@ The system simulates a multi-turn chat session where each user query is:
 
 This structure mimics real-world retrieval logic for **LLM-based memory systems**, enabling efficient reuse of semantically close content.
 
+### System Architecture
+```mermaid
+flowchart TD
+    A[User Query] --> B[Session Manager]
+    B --> C[Context Builder (Conversation + Query)]
+    C --> D[Embedding via Gemini API]
+    D --> E[Vector Store Search]
+    E -->|High similarity| F[Cache HIT → Return Cached Response]
+    E -->|Low similarity| G[LLM Call → Store New Response]
+```
+
 ---
 
 ## 🧩 2. Architecture (File Structure)
@@ -181,4 +192,6 @@ Estimated Cost Saved: $0.00 (Flash-Lite pricing)
 [CACHE HIT #2] Effect of global warming on corn productivity  
 → Return cached content: Climate change is having a signific…
 ```
+---
+
 

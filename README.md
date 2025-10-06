@@ -164,7 +164,7 @@ To reflect real API costs, the system uses **Gemini 2.5 Flash-Lite** pricing for
 The cost per query is estimated as:
 
 $$
-\text{cost} = \frac{\text{input_tokens}}{1{,}000{,}000} \times 0.10 + \frac{\text{output_tokens}}{1{,}000{,}000} \times 0.40
+\text{cost} = \frac{\text{input\_tokens}}{1{,}000{,}000} \times 0.10 + \frac{\text{output\_tokens}}{1{,}000{,}000} \times 0.40
 $$
 
 Only **MISS** queries consume tokens; **HIT** queries reuse local results at zero cost.

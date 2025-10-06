@@ -20,7 +20,7 @@ This structure mimics real-world retrieval logic for **LLM-based memory systems*
 ```mermaid
 flowchart TD
     A[User Query] --> B[Session Manager]
-    B --> C[Context Builder (Conversation + Query)]
+    B --> C["Context Builder (Conversation + Query)"]
     C --> D[Embedding via Gemini API]
     D --> E[Vector Store Search]
     E -->|High similarity| F[Cache HIT → Return Cached Response]

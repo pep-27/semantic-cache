@@ -1,0 +1,3 @@
+chromadb
+google-generativeai
+google-cloud-aiplatform

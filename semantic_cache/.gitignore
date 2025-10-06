@@ -1,0 +1,19 @@
+# Python compiled and cached files
+__pycache__/
+*.pyc
+
+# sensitive files (local environment variables)
+.env
+
+# operating system and IDE generated files
+.DS_Store
+.vscode/
+
+# test files
+archive/
+
+# Local Gemini response cache
+cache/responses_cache.json
+
+# logs
+logs/

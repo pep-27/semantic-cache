@@ -163,7 +163,7 @@ At the end of a run, the system reports:
 ```
 Cache Hit Rate: 50.00%
 Avg Latency: 0.027 s
-Hit Latency: 0.003 s, Miss Latency: 0.81 s
+Hit Latency: 0.003 s, Miss Latency: 0.051 s
 LLM Calls Saved: 4
 Estimated Cost Saved: $0.00 (Flash-Lite pricing)
 ```
